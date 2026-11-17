@@ -177,6 +177,7 @@
   .head { text-align: center; margin: 110px 0 34px; }
   .head h2 { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
              font-size: clamp(34px, 5vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; margin: 0; }
+  .head p.more-link { margin-top: 10px; font-size: 17px; }
   .head p { color: var(--text-2); font-size: clamp(17px, 2vw, 21px); max-width: 34em; margin: 14px auto 0; }
   h3.sub { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; margin: 44px 4px 16px; }
 
@@ -335,6 +336,7 @@
     <div class="links">
       <a href="#about"><span lang="en">About</span><span lang="id">Profil</span></a>
       <a href="#projects"><span lang="en">Projects</span><span lang="id">Proyek</span></a>
+      <a href="/apps/"><span lang="en">Apps</span><span lang="id">Aplikasi</span></a>
       <a href="#teaching"><span lang="en">Teaching</span><span lang="id">Pengajaran</span></a>
       <a href="#publications"><span lang="en">Publications</span><span lang="id">Publikasi</span></a>
       <a href="#experience"><span lang="en">Experience</span><span lang="id">Pengalaman</span></a>
@@ -407,6 +409,7 @@
     <div class="head">
       <h2 id="projects-h"><span lang="en">Projects</span><span lang="id">Proyek</span></h2>
       <p><span lang="en">Open tools for research and teaching. All free, and most run in your browser without installing anything.</span><span lang="id">Perangkat terbuka untuk penelitian dan pengajaran. Semuanya gratis, dan sebagian besar langsung berjalan di browser tanpa instalasi.</span></p>
+      <p class="more-link"><a href="/apps/"><span lang="en">All apps on one page</span><span lang="id">Semua aplikasi dalam satu halaman</span></a></p>
     </div>
 
     <h3 class="sub"><span lang="en">Research software</span><span lang="id">Perangkat lunak penelitian</span></h3>
@@ -431,7 +434,7 @@
         <p lang="en" class="grow">PLS-SEM from questionnaire data, with every result explained in plain language. One HTML file, no installation, no upload of your data, and the equivalent R code for each analysis.</p>
         <p lang="id" class="grow">PLS-SEM dari data kuesioner, dengan setiap hasil dijelaskan dalam bahasa sederhana. Satu file HTML, tanpa instalasi, tanpa mengunggah data, dan disertai kode R yang setara untuk setiap analisis.</p>
         <div class="cta">
-          <a class="btn" href="https://novrisuhermi-sem.share.connect.posit.cloud"><span lang="en">Open the app</span><span lang="id">Buka aplikasi</span></a>
+          <a class="btn" href="/apps/sembada/"><span lang="en">Open the app</span><span lang="id">Buka aplikasi</span></a>
           <a href="https://github.com/novrisuhermi/sembada/releases"><span lang="en">Desktop</span><span lang="id">Desktop</span></a>
           <a href="https://github.com/novrisuhermi/sembada"><span lang="en">Source</span><span lang="id">Kode</span></a>
         </div>
@@ -456,10 +459,10 @@
         <p lang="en">Simulate processes, read the ACF and PACF, and follow Box&ndash;Jenkins case studies step by step.</p>
         <p lang="id">Simulasikan proses, baca ACF dan PACF, dan ikuti studi kasus Box&ndash;Jenkins langkah demi langkah.</p>
         <ul class="rows grow">
-          <li><span class="nm">ARIMA<span class="ds" lang="en">Simulation and case studies</span><span class="ds" lang="id">Simulasi dan studi kasus</span></span><a href="https://novrisuhermi-arima.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm">SARIMA<span class="ds" lang="en">Seasonal processes</span><span class="ds" lang="id">Proses musiman</span></span><a href="https://novrisuhermi-sarima.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm"><span lang="en">Transfer function</span><span lang="id">Fungsi transfer</span><span class="ds" lang="en">Prewhitening, CCF, (b, r, s)</span><span class="ds" lang="id">Prewhitening, CCF, (b, r, s)</span></span><a href="https://novrisuhermi-tf.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm"><span lang="en">Data generator</span><span lang="id">Pembangkit data</span><span class="ds" lang="en">Simulated data with R code</span><span class="ds" lang="id">Data simulasi beserta kode R</span></span><a href="https://novrisuhermi-ts-sim.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm">ARIMA<span class="ds" lang="en">Simulation and case studies</span><span class="ds" lang="id">Simulasi dan studi kasus</span></span><a href="/apps/arima/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm">SARIMA<span class="ds" lang="en">Seasonal processes</span><span class="ds" lang="id">Proses musiman</span></span><a href="/apps/sarima/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm"><span lang="en">Transfer function</span><span lang="id">Fungsi transfer</span><span class="ds" lang="en">Prewhitening, CCF, (b, r, s)</span><span class="ds" lang="id">Prewhitening, CCF, (b, r, s)</span></span><a href="/apps/transfer-function/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm"><span lang="en">Data generator</span><span lang="id">Pembangkit data</span><span class="ds" lang="en">Simulated data with R code</span><span class="ds" lang="id">Data simulasi beserta kode R</span></span><a href="/apps/ts-data-generator/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
         </ul>
         <div class="cta"><a href="https://github.com/novrisuhermi/time-series"><span lang="en">Course materials</span><span lang="id">Materi kuliah</span></a></div>
       </article>
@@ -470,9 +473,9 @@
         <p lang="en">Watch algorithms work step by step, race them, and see how they power everyday statistics.</p>
         <p lang="id">Lihat algoritma bekerja langkah demi langkah, adu kecepatannya, dan temukan perannya dalam statistika.</p>
         <ul class="rows grow">
-          <li><span class="nm"><span lang="en">Recursion</span><span lang="id">Rekursi</span><span class="ds" lang="en">Call stack, memoization, Hanoi</span><span class="ds" lang="id">Call stack, memoization, Hanoi</span></span><a href="https://novrisuhermi-recursion.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm"><span lang="en">Sorting</span><span lang="id">Pengurutan</span><span class="ds" lang="en">Six algorithms, quantiles, ranks</span><span class="ds" lang="id">Enam algoritma, kuantil, peringkat</span></span><a href="https://novrisuhermi-sorting.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm"><span lang="en">Searching</span><span lang="id">Pencarian</span><span class="ds" lang="en">Binary search, bounds, ECDFs</span><span class="ds" lang="id">Pencarian biner, batas, ECDF</span></span><a href="https://novrisuhermi-searching.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm"><span lang="en">Recursion</span><span lang="id">Rekursi</span><span class="ds" lang="en">Call stack, memoization, Hanoi</span><span class="ds" lang="id">Call stack, memoization, Hanoi</span></span><a href="/apps/recursion/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm"><span lang="en">Sorting</span><span lang="id">Pengurutan</span><span class="ds" lang="en">Six algorithms, quantiles, ranks</span><span class="ds" lang="id">Enam algoritma, kuantil, peringkat</span></span><a href="/apps/sorting/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm"><span lang="en">Searching</span><span lang="id">Pencarian</span><span class="ds" lang="en">Binary search, bounds, ECDFs</span><span class="ds" lang="id">Pencarian biner, batas, ECDF</span></span><a href="/apps/searching/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
         </ul>
         <div class="cta"><a href="https://github.com/novrisuhermi/data-structure"><span lang="en">Source code</span><span lang="id">Kode sumber</span></a></div>
       </article>
@@ -483,10 +486,10 @@
         <p lang="en">Professional exam study guides turned into short lessons, hands-on labs, practice questions, flashcards and a glossary, each in a single offline HTML file.</p>
         <p lang="id">Panduan belajar ujian profesional dalam bentuk pelajaran singkat, lab interaktif, latihan soal, flashcard, dan glosarium, masing-masing dalam satu file HTML yang bisa dipakai offline.</p>
         <ul class="rows grow">
-          <li><span class="nm">Marketing Science<span class="ds" lang="en">Lift tests, attribution, marketing mix models</span><span class="ds" lang="id">Uji lift, atribusi, marketing mix model</span></span><a href="https://novrisuhermi-marketing-science.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm">Media Buying<span class="ds" lang="en">Campaign setup, the ad auction, audiences</span><span class="ds" lang="id">Kampanye, lelang iklan, audiens</span></span><a href="https://novrisuhermi-buying.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm">Media Planning<span class="ds" lang="en">Budget, placements, measurement</span><span class="ds" lang="id">Anggaran, penempatan, pengukuran</span></span><a href="https://novrisuhermi-planning.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
-          <li><span class="nm">Business Messaging<span class="ds" lang="en">Messaging journeys and the maturity model</span><span class="ds" lang="id">Alur pesan dan model kematangan</span></span><a href="https://novrisuhermi-messaging.share.connect.posit.cloud"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm">Marketing Science<span class="ds" lang="en">Lift tests, attribution, marketing mix models</span><span class="ds" lang="id">Uji lift, atribusi, marketing mix model</span></span><a href="/apps/marketing-science/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm">Media Buying<span class="ds" lang="en">Campaign setup, the ad auction, audiences</span><span class="ds" lang="id">Kampanye, lelang iklan, audiens</span></span><a href="/apps/media-buying/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm">Media Planning<span class="ds" lang="en">Budget, placements, measurement</span><span class="ds" lang="id">Anggaran, penempatan, pengukuran</span></span><a href="/apps/media-planning/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
+          <li><span class="nm">Business Messaging<span class="ds" lang="en">Messaging journeys and the maturity model</span><span class="ds" lang="id">Alur pesan dan model kematangan</span></span><a href="/apps/business-messaging/"><span lang="en">Open</span><span lang="id">Buka</span></a></li>
         </ul>
         <div class="cta"><a href="https://github.com/novrisuhermi/marketing"><span lang="en">Source code</span><span lang="id">Kode sumber</span></a></div>
       </article>

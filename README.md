@@ -2,17 +2,43 @@
 
 Source of <https://novrisuhermi.github.io>, the personal website of Novri Suhermi
 (Department of Statistics, Institut Teknologi Sepuluh Nopember, Surabaya): profile,
-research interests, projects, teaching, selected publications and experience.
+research interests, projects, apps, teaching, publications and experience.
 
 ## Files
 
 | File | Content |
 |---|---|
-| `index.html` | The whole site: plain HTML and CSS, no build step |
+| `index.html` | The home page: plain HTML and CSS, no build step |
 | `assets/novri.jpg`, `assets/novri.webp` | Profile photo (metadata removed) |
+| `apps/index.html` | The page that lists all apps |
+| `apps/<name>/index.html` | Copies of the single-file HTML apps (see below) |
+| `tools/sync-apps.sh` | Refreshes the app copies from their source repositories |
 
 GitHub Pages publishes the `main` branch; a change appears about a minute after it
 is committed.
+
+## Apps
+
+The apps are copies of single-file HTML apps kept in other repositories, so each
+one opens at a short address under <https://novrisuhermi.github.io/apps/>:
+
+| App | Address | Source |
+|---|---|---|
+| ARIMA | `/apps/arima/` | time-series |
+| SARIMA | `/apps/sarima/` | time-series |
+| Transfer function | `/apps/transfer-function/` | time-series |
+| Data generator | `/apps/ts-data-generator/` | time-series |
+| Recursion | `/apps/recursion/` | data-structure |
+| Sorting | `/apps/sorting/` | data-structure |
+| Searching | `/apps/searching/` | data-structure |
+| SEMbada | `/apps/sembada/` | sembada |
+| Marketing Science | `/apps/marketing-science/` | marketing |
+| Media Buying | `/apps/media-buying/` | marketing |
+| Media Planning | `/apps/media-planning/` | marketing |
+| Business Messaging | `/apps/business-messaging/` | marketing |
+
+A copy does not change when its source changes. After updating an app in its own
+repository, run `bash tools/sync-apps.sh`, then commit and push.
 
 ## Editing
 
@@ -34,8 +60,10 @@ Do not add a folder with the same name as one of those repositories here.
 
 ## Bahasa Indonesia
 
-Repositori ini berisi kode situs pribadi <https://novrisuhermi.github.io>. Seluruh
-isi situs ada di `index.html`; foto ada di folder `assets/`. Setiap teks punya
+Repositori ini berisi kode situs pribadi <https://novrisuhermi.github.io>. Halaman
+utama ada di `index.html`, foto di folder `assets/`, dan salinan aplikasi HTML di
+folder `apps/`. Salinan aplikasi tidak ikut berubah saat aplikasi aslinya diperbarui;
+jalankan `bash tools/sync-apps.sh`, lalu commit dan push. Setiap teks punya
 versi bahasa Inggris (`lang="en"`) dan Indonesia (`lang="id"`). Untuk menambah
 proyek, salin satu blok `<article class="tile ...">` di bagian *Projects*, lalu ubah
 teks dan tautannya. Situs terbuka dalam tema terang; tombol bulan di bilah navigasi
