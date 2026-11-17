@@ -19,7 +19,9 @@ is committed.
 * Every text has an English version (`lang="en"`) and an Indonesian version
   (`lang="id"`); the EN/ID buttons switch between them, and the first visit follows
   the browser language.
-* To add a project, copy one `<article class="tool ...">` block in the
+* The site opens in the light theme; the moon button in the navigation bar
+  switches to the dark theme, and the choice is remembered on that device.
+* To add a project, copy one `<article class="tile ...">` block in the
   *Projects* section and change its texts and links.
 * To add a publication, copy one `<li>` in the *Selected publications* list.
 * The line under the profile is the monthly Google Trends series for "sapi" from
@@ -35,5 +37,6 @@ Do not add a folder with the same name as one of those repositories here.
 Repositori ini berisi kode situs pribadi <https://novrisuhermi.github.io>. Seluruh
 isi situs ada di `index.html`; foto ada di folder `assets/`. Setiap teks punya
 versi bahasa Inggris (`lang="en"`) dan Indonesia (`lang="id"`). Untuk menambah
-proyek, salin satu blok `<article class="tool ...">` di bagian *Projects*, lalu ubah
-teks dan tautannya. Perubahan tampil sekitar satu menit setelah di-commit.
+proyek, salin satu blok `<article class="tile ...">` di bagian *Projects*, lalu ubah
+teks dan tautannya. Situs terbuka dalam tema terang; tombol bulan di bilah navigasi
+mengganti ke tema gelap, dan pilihan itu diingat di perangkat tersebut. Perubahan tampil sekitar satu menit setelah di-commit.

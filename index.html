@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="en" data-lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#eef2f9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#06070b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef2f9" id="theme-color">
+<script>
+  (function () {
+    var t = 'light';
+    try { t = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'; } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+    if (t === 'dark') document.querySelector('#theme-color').setAttribute('content', '#06070b');
+  })();
+</script>
 <title>Novri Suhermi · Statistics, forecasting and open tools</title>
 <meta name="description" content="Novri Suhermi, lecturer at the Department of Statistics, Institut Teknologi Sepuluh Nopember (ITS), Surabaya: research in functional data analysis, time series and forecasting, open tools, teaching and publications.">
 <meta property="og:title" content="Novri Suhermi">
@@ -42,8 +49,7 @@
     --a-dsa: #8944ab; --a-mkt: #b25e00; --a-more: #6e6e73;
     color-scheme: light;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
+  html[data-theme="dark"] {
       --bg: #06070b;
       --orb-1: rgba(41, 151, 255, .30);
       --orb-2: rgba(94, 92, 230, .30);
@@ -67,13 +73,12 @@
       --a-lunar: #9e9cff; --a-sem: #ff6b8b; --a-gst: #5bd77a; --a-ts: #5ac8db;
       --a-dsa: #d29cf0; --a-mkt: #ffb340; --a-more: #a1a1a6;
       color-scheme: dark;
-    }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0; color: var(--text); background: var(--bg);
+    margin: 0; color: var(--text); background: var(--bg); -webkit-tap-highlight-color: transparent;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
     font-size: 17px; line-height: 1.5; letter-spacing: -0.012em;
     -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -129,6 +134,13 @@
                 background: transparent; border: 0; border-radius: 8px; padding: 4px 11px; cursor: pointer; }
   .seg button[aria-pressed="true"] { background: var(--glass-strong); color: var(--text);
                                      box-shadow: 0 1px 3px rgba(0, 0, 0, .12), inset 0 1px 0 var(--glass-highlight); }
+
+  .theme { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px;
+           margin-left: 10px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; color: var(--text);
+           background: var(--hair); }
+  .theme:hover { background: var(--glass-strong); }
+  .theme svg { width: 18px; height: 18px; stroke: var(--text); fill: none; }
+  html[data-theme="light"] .i-sun, html[data-theme="dark"] .i-moon { display: none; }
 
   /* hero */
   .hero { text-align: center; padding: 72px 0 18px; }
@@ -237,6 +249,10 @@
   .contact p { color: var(--text-2); max-width: 34em; margin: 14px auto 0; }
   footer { text-align: center; color: var(--text-3); font-size: 13px; padding: 40px 0 56px; }
 
+  .pubs .r, .pubs .m, .pubs .t, .plain .m, .contact .mail, .rows .ds { overflow-wrap: anywhere; }
+  code { white-space: normal; overflow-wrap: anywhere; }
+  .rows a { padding: 6px 0; }
+
   html[data-lang="en"] [lang="id"], html[data-lang="id"] [lang="en"] { display: none !important; }
 
   @media (max-width: 900px) {
@@ -248,6 +264,17 @@
     body { font-size: 16px; }
     .wrap { padding: 0 16px; }
     .brand { display: none; }
+    .nav .wrap { height: 56px; }
+    .links { -webkit-mask-image: linear-gradient(to right, #000 82%, transparent);
+             mask-image: linear-gradient(to right, #000 82%, transparent); padding-right: 18px; }
+    .links a { font-size: 15px; margin-right: 18px; padding: 10px 0; }
+    .seg button { padding: 7px 11px; font-size: 14px; }
+    .theme { width: 40px; height: 40px; margin-left: 8px; }
+    .glass, .nav { -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%); }
+    .wallpaper::before { animation: none; }
+    .pill { font-size: 15px; padding: 10px 18px; }
+    .contact { padding: 34px 20px; }
+    .contact .mail { font-size: 22px; }
     .hero { padding-top: 46px; }
     .avatar { width: 150px; height: 150px; }
     .bento { grid-template-columns: 1fr; gap: 14px; }
@@ -284,6 +311,10 @@
       <button type="button" data-set="en" aria-pressed="true">EN</button>
       <button type="button" data-set="id" aria-pressed="false">ID</button>
     </div>
+    <button type="button" class="theme" id="theme-toggle" aria-label="Switch to dark mode">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -580,7 +611,26 @@
     var saved = null;
     try { saved = localStorage.getItem('lang'); } catch (e) {}
     set(saved || ((navigator.language || '').toLowerCase().indexOf('id') === 0 ? 'id' : 'en'));
-    buttons.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.set); }); });
+    buttons.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.set); label(); }); });
+
+    var toggle = document.getElementById('theme-toggle'), meta = document.getElementById('theme-color');
+    function label() {
+      var dark = root.getAttribute('data-theme') === 'dark', id = root.getAttribute('data-lang') === 'id';
+      var text = dark ? (id ? 'Ganti ke mode terang' : 'Switch to light mode')
+                      : (id ? 'Ganti ke mode gelap' : 'Switch to dark mode');
+      toggle.setAttribute('aria-label', text);
+      toggle.setAttribute('title', text);
+    }
+    function theme(t) {
+      root.setAttribute('data-theme', t);
+      meta.setAttribute('content', t === 'dark' ? '#06070b' : '#eef2f9');
+      try { localStorage.setItem('theme', t); } catch (e) {}
+      label();
+    }
+    toggle.addEventListener('click', function () {
+      theme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+    label();
   })();
 </script>
 </body>
