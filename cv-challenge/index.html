@@ -297,7 +297,13 @@ tr.ref .rk-badge{background:transparent;border:1px dashed var(--ink-3);color:var
 .grid-prof{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:22px}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .prof-card{padding:22px 26px 26px}
-.prof-card label{display:block;font-weight:600;color:var(--ink-2);margin-bottom:8px}
+.prof-card label{display:block;font-weight:600;color:var(--ink-2)}
+.pick-h{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;margin-bottom:10px}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface-2)}
+.seg-l{font-size:12.5px;font-weight:600;color:var(--ink-3);padding:0 6px 0 8px}
+.seg button{border:0;background:none;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700;color:var(--ink-2);cursor:pointer}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--gold);color:#221A05}
 .prof-card .sel{width:100%}
 .idrow{display:flex;align-items:center;gap:18px;margin-top:24px}
 .idrow .av{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:30px;border:5px solid var(--line);flex:none;background:var(--surface-2)}
@@ -554,7 +560,10 @@ tr.ref .rk-badge{background:transparent;border:1px dashed var(--ink-3);color:var
   <section class="view" id="view-profiles" role="tabpanel" aria-labelledby="t-profiles" hidden>
     <div class="grid-prof">
       <div class="panel prof-card" style="margin-top:0">
-        <label for="profSel" data-i18n="p_choose"></label>
+        <div class="pick-h">
+          <label for="profSel" data-i18n="p_choose"></label>
+          <div class="seg" role="group" id="profSort"><span class="seg-l" data-i18n="p_sort"></span><button type="button" data-psort="rank" aria-pressed="true" data-i18n="ps_rank"></button><button type="button" data-psort="nrp" aria-pressed="false" data-i18n="ps_nrp"></button><button type="button" data-psort="name" aria-pressed="false" data-i18n="ps_name"></button></div>
+        </div>
         <select class="sel" id="profSel"></select>
         <div id="profId"></div>
       </div>
@@ -691,6 +700,7 @@ const I18N = {
   ref_naive_short:'Naif', ref_median_short:'Median kelas',
   c_co_t:'Apakah metrik lain mengubah urutan?', c_co_h:'Korelasi Spearman antara peringkat menurut RMSE, MAE, MAPE, dan sMAPE.',
   co_same:'Juara tetap sama di keempat metrik: {name}.', co_diff:'Juara per metrik: {list}.',
+  p_sort:'Urutkan', ps_rank:'Peringkat', ps_nrp:'NRP', ps_name:'Nama',
   p_choose:'Pilih mahasiswa', p_of:'dari {n} peserta', p_best:'RMSE {v}', p_mt_t:'Skor per metrik',
   col_metric:'Metrik', col_value:'Nilai', col_rankm:'Peringkat', col_cmed:'Median kelas', rank_of:'{r} dari {n}',
   m_rmse:'Skor resmi', m_mae:'Galat absolut rata-rata', m_mape:'Galat persentase absolut', m_smape:'Versi simetris MAPE', m_bias:'Bias', m_bias_h:'Rata-rata galat; negatif berarti cenderung terlalu rendah',
@@ -778,6 +788,7 @@ const I18N = {
   ref_naive_short:'Naive', ref_median_short:'Class median',
   c_co_t:'Would another metric change the order?', c_co_h:'Spearman correlation between rankings by RMSE, MAE, MAPE and sMAPE.',
   co_same:'The winner is the same under all four metrics: {name}.', co_diff:'Winner by metric: {list}.',
+  p_sort:'Sort by', ps_rank:'Ranking', ps_nrp:'NRP', ps_name:'Name',
   p_choose:'Choose a student', p_of:'of {n} participants', p_best:'RMSE {v}', p_mt_t:'Score by metric',
   col_metric:'Metric', col_value:'Value', col_rankm:'Rank', col_cmed:'Class median', rank_of:'{r} of {n}',
   m_rmse:'Official score', m_mae:'Mean absolute error', m_mape:'Mean absolute percentage error', m_smape:'Symmetric version of MAPE', m_bias:'Bias', m_bias_h:'Mean error; negative means forecasts ran low',
@@ -1286,7 +1297,7 @@ function drawHistory(){
 }
 
 /* ---------------- profiles ---------------- */
-let cur = byRank[0];
+let cur = byRank[0], profSort = 'rank';
 function badgesOf(s){
   const b = [];
   if (s.r.rmse === 1) b.push(['gold', 'b_champ']); else if (s.r.rmse <= 3) b.push(['gold', 'b_podium']); else if (s.r.rmse <= 10) b.push(['gold', 'b_top10']);
@@ -1300,7 +1311,11 @@ function badgesOf(s){
 }
 function renderProfile(){
   const sel = $('#profSel');
-  sel.innerHTML = [...ranked].sort((a, b) => a.name.localeCompare(b.name)).map(s => `<option value="${s.idx}">${esc(s.name)} (${esc(s.nrp)})</option>`).join('');
+  const list = profSort === 'rank' ? byRank : [...ranked].sort(profSort === 'nrp' ? (a, b) => (a.nrp || '').localeCompare(b.nrp || '') : (a, b) => a.name.localeCompare(b.name, loc()));
+  const optLabel = s => profSort === 'rank' ? `${s.tied ? '=' : ''}${s.r.rmse}. ${s.name} (${s.nrp})` : profSort === 'nrp' ? `${s.nrp} – ${s.name}` : `${s.name} (${s.nrp})`;
+  sel.innerHTML = list.map(s => `<option value="${s.idx}">${esc(optLabel(s))}</option>`).join('');
+  $$('#profSort button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.psort === profSort)));
+  $('#profSort').setAttribute('aria-label', t('p_sort'));
   sel.value = cur.idx;
   const s = cur, medal = s.r.rmse === 1 ? 'g' : s.r.rmse === 2 ? 's' : s.r.rmse === 3 ? 'b' : '';
   const notes = s.notes.length ? `<ul>${s.notes.map(n => `<li${n.sev === 'warn' ? ' style="color:var(--bad);font-weight:600"' : ''}>${noteHTML(n)}</li>`).join('')}</ul>` : `<div>${t('p_nonotes')}</div>`;
@@ -1354,6 +1369,7 @@ function drawProfErr(){
     b.addEventListener('pointerenter', tipf); b.addEventListener('pointermove', tipf); b.addEventListener('pointerleave', hideTip);
   });
 }
+$$('#profSort button').forEach(b => b.addEventListener('click', () => { if (profSort !== b.dataset.psort){ profSort = b.dataset.psort; renderProfile(); } }));
 $('#profSel').addEventListener('change', e => { cur = students[+e.target.value]; renderProfile(); drawProfLine(); drawProfErr(); });
 
 /* ---------------- submissions ---------------- */
