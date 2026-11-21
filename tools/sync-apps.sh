@@ -17,3 +17,4 @@ get marketing-science  marketing/main/marketing-science/index.html
 get media-buying       marketing/main/buying/index.html
 get media-planning     marketing/main/planning/index.html
 get business-messaging marketing/main/messaging/index.html
+get creative-strategy  marketing/main/creative/index.html
